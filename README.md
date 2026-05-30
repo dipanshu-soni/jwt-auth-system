@@ -85,18 +85,6 @@ POST /register
 }
 ```
 
-## Project Structure
-
-```text
-backend/
-│── server.js
-│── models/
-│── routes/
-│── controllers/
-│── node_modules/
-│── .env
-```
-
 ## Future Improvements
 
 * User Login System
