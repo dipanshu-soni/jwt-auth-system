@@ -70,7 +70,6 @@ POST /register
 
 ```json
 {
-  "username": "John",
   "email": "john@example.com",
   "password": "123456"
 }
@@ -80,7 +79,7 @@ POST /register
 
 ```json
 {
-  "message": "User registered successfully",
+  "message": "Login successful",
   "token": "JWT_TOKEN"
 }
 ```
