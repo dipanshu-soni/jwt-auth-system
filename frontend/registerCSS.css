@@ -1,0 +1,46 @@
+body {
+    color: white;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-image :
+    url(https://user-images.githubusercontent.com/13468728/233847739-219cb494-c265-4554-820a-bd3424c59065.jpg);
+    background-repeat : no-repeat;
+    background-size : cover;
+}
+
+.container {
+    margin: 30px 0;
+    position : relative;
+    max-width : 400px;
+    height: 500px;
+    color : white;
+    background-color : transparent;
+    backdrop-filter: blur(55px);
+    border : 2px solid rgba(255,255,255,0.6);
+    border-radius: 20px;
+    display : flex;
+    justify-content : center;
+
+}
+
+input {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+}
+
+button {
+    padding: 10px 65px;
+    border: none;
+    border-radius: 50px;
+    background: rgba(255,255,255,1);
+    font-size: 16px;
+    font-weight: 600px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    background: rgb(255,255,255,0.5);
+}
