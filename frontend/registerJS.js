@@ -1,5 +1,3 @@
-const BASE_URL = import.meta.env.VITE_API_URL;
-
 const form = document.getElementById("registerForm");
 
 form.addEventListener("submit", registerUser);
@@ -33,7 +31,7 @@ function registerUser(e)
 
     alert("Validation Passed !");
 
-    fetch(`${BASE_URL}/register`, {
+    fetch(`https://jwt-auth-system-vgt5.onrender.com/register`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
