@@ -1,3 +1,5 @@
+const BASE_URL = import.meta.env.VITE_API_URL;
+
 const form = document.getElementById("registerForm");
 
 form.addEventListener("submit", registerUser);
@@ -9,7 +11,7 @@ function registerUser(e)
     const name = document.getElementById("nameInput").value.trim();
     const email = document.getElementById("emailInput").value.trim();
     const password = document.getElementById("passInput").value.trim();
-    const age = document.getElementById("ageInput").value.trim();
+    const age = Number(document.getElementById("ageInput").value.trim());
 
     if(!validateEmail(email))
     {
@@ -31,7 +33,7 @@ function registerUser(e)
 
     alert("Validation Passed !");
 
-    fetch("http://localhost:3000/register", {
+    fetch(`${BASE_URL}/register`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -43,9 +45,10 @@ function registerUser(e)
             age: age
         })
     })
-    .then(res => res.text())
+    .then(res => res.json())
     .then(data => {
-        alert(data);    // shows response from server
+        alert(data.message);    // shows response from server
+        console.log(data);
     })
 
     .catch (error => {
