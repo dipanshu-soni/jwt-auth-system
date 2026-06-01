@@ -75,12 +75,15 @@ app.post('/register', async (req, res) => {
         });
 
         await newUser.save();
-        res.status(201).send("Registration successful and Data Saved !");
+        res.status(201).json({
+            message: "Registration successful and Data Saved!"
+        });
     }
 
     catch(error)
     {
-        res.status(500).send("Error in saving data !\n",error);
+        res.status(500).send("Error in saving data !");
+        console.log(error);
     }
 });
 
