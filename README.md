@@ -70,6 +70,30 @@ POST /register
 
 ```json
 {
+  "name": "John",
+  "email": "john@example.com",
+  "password": "123456",
+  "age": 21
+}
+```
+### Response
+
+```json
+{
+  "message": "Registration successful and Data Saved!"
+}
+```
+
+### Login User
+
+```http
+POST /login
+```
+
+### Request Body
+
+```json
+{
   "email": "john@example.com",
   "password": "123456"
 }
