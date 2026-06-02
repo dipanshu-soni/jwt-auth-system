@@ -15,10 +15,10 @@ mongoose.connect(process.env.MONGO_URI)
 .catch((err) => console.log("Error : ",err));
 
 const userSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    password: String,
-    age: Number
+    name: {type: String, required: true},
+    email: {type: String, required: true, unique: true},
+    password: {type: String, required: true},
+    age: {type: Number, required: true}
 });
 
 const User = mongoose.model("User",userSchema);
@@ -51,9 +51,9 @@ app.get('/', (req, res) => {
 
 // REGISTER ROUTE
 app.post('/register', async (req, res) => {
-    const {name, email, password, age} = req.body || {};
+    const {name, email, password, age} = req.body;
     
-    if(!name || !email || !password || age == null)
+    if(!name || !email || !password || !age)
     {
         return res.status(400).send("All fields are required !");
     }
@@ -82,8 +82,11 @@ app.post('/register', async (req, res) => {
 
     catch(error)
     {
-        res.status(500).send("Error in saving data !");
         console.log(error);
+        res.status(500).json({
+            message: "Error in saving data",
+            error: error.message
+        });
     }
 });
 
@@ -91,7 +94,8 @@ app.post('/register', async (req, res) => {
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
-    try {
+    try
+    {
         const existingUser = await User.findOne({ email });
 
         if (!existingUser) {
@@ -115,13 +119,19 @@ app.post('/login', async (req, res) => {
             token: token
         });
 
-    } catch (error) {
-        res.status(500).send("Error logging in !\n", error);
+    }
+    catch(error)
+    {
+        res.status(500).json({
+            message: "Error in logging in !",
+            error: error.message
+        });
     }
 });
 
 app.get('/profile', authMiddleware, async (req, res) => {
-    try {
+    try
+    {
         const user = await User.findById(req.user.userId).select("-password");
 
         if (!user) {
@@ -129,8 +139,13 @@ app.get('/profile', authMiddleware, async (req, res) => {
         }
 
         res.json(user);
-    } catch (err) {
-        res.status(500).send("Error fetching profile");
+    }
+    catch(err)
+    {
+        res.status(500).json({
+            message: "Error fetching profile",
+            error: error.message
+        });
     }
 });
 
